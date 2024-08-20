@@ -1,0 +1,15 @@
+data/*
+models/*
+outputs/*
+__pycache__
+.coverage
+.mypy_cache
+.pytest_cache
+.venv
+*.env
+!data/README.md
+!models/README.md
+!outputs/README.md
+!environments/ci/.env
+!environments/cpu/.env
+!environments/gpu/.env

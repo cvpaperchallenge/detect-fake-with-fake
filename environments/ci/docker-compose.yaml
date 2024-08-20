@@ -1,0 +1,14 @@
+services:
+  core:
+    image: ci
+    build:
+      args:
+        - BASE_IMAGE=ubuntu:20.04
+        - PYTHON_VERSION=3.12
+        - RUN_POETRY_INSTALL_AT_BUILD_TIME=true
+        - PROJECT_NAME=${PROJECT_NAME_ENV}
+      context: ../../
+      dockerfile: environments/Dockerfile
+    tty: true
+    volumes:
+        - ../../:/home/challenger/${PROJECT_NAME_ENV}

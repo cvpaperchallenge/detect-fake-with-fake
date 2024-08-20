@@ -1,0 +1,26 @@
+name: gpu-${PROJECT_NAME_ENV}
+services:
+  core:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+              count: 1
+    build:
+      args:
+        - BASE_IMAGE=nvidia/cuda:11.0.3-devel-ubuntu20.04
+        - PYTHON_VERSION=3.12
+        - UID=${HOST_UID-1000}
+        - GID=${HOST_GID-1000}
+        - PROJECT_NAME=${PROJECT_NAME_ENV}
+      context: ../../
+      dockerfile: environments/Dockerfile
+    # env_file:
+    #   - ../envs.env
+    tty: true
+    volumes:
+        - ../../:/home/challenger/${PROJECT_NAME_ENV}
+    ports:
+        - 8000:8000

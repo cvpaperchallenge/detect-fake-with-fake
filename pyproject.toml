@@ -1,0 +1,104 @@
+[tool.poetry]
+name = "ascender"
+version = "0.1.3"
+description = "Project template for XCCV group of cvpaper.challenge."
+license = "MIT"
+authors = ["cvpaper.challenge XCCV group"]
+maintainers = ["yoshihiro fukuhara <gatheluck@gmail.com>"]
+readme = "README.md"
+keywords = [
+    "ascender",
+    "Python",
+    "projects",
+    "project templates",
+    "project directory",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Environment :: GPU :: NVIDIA CUDA",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Natural Language :: Japanese",
+    "Programming Language :: Python",
+    "Topic :: Software Development",
+]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.4.1"
+mdformat-gfm = "^0.3.6"
+mdformat-frontmatter = "^2.0.8"
+mdformat_footnote = "^0.1.1"
+mypy = "^1.10.0"
+pytest-cov = "^5.0.0"
+
+[tool.mypy]
+python_version = 3.8
+# following setting is same as pysen
+# https://github.com/pfnet/pysen/blob/main/setup.cfg#L12
+check_untyped_defs = true
+disallow_any_decorated = false
+disallow_any_generics = false
+disallow_any_unimported = false
+disallow_incomplete_defs = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = false
+disallow_untyped_defs = true
+ignore_errors = false
+ignore_missing_imports = true
+no_implicit_optional = true
+show_error_codes = true
+strict_equality = true
+strict_optional = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "I", "N", "D", "PT"]
+ignore = [
+    # To avoid conflicting with the Ruff formatter, some linter rules should be ignored.
+    # See also https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+    "W191", # Checks for indentation that uses tabs.
+    "E111", # Checks for indentation with a non-multiple of 4 spaces.
+    "E114", # Checks for indentation of comments with a non-multiple of 4 spaces.
+    "E117", # Checks for over-indented code.
+    "D206", # Checks for docstrings that are indented with tabs.
+    "D300", # Checks for docstrings that use `'''triple single quotes'''` instead of `"""triple double quotes"""`.
+    "Q000", # Checks for inline strings that use single quotes or double quotes, depending on the value of the `lint.flake8-quotes.inline-quotes` option.
+    "Q001", # Checks for multiline strings that use single quotes or double quotes, depending on the value of the `lint.flake8-quotes.multiline-quotes` setting.
+    "Q002", # Checks for docstrings that use single quotes or double quotes, depending on the value of the `lint.flake8-quotes.docstring-quotes` setting.
+    "Q003", # Checks for strings that include escaped quotes, and suggests changing the quote style to avoid the need to escape them.
+    "COM812", # Checks for the absence of trailing commas.
+    "COM819", # Checks for the presence of prohibited trailing commas.
+    "ISC001", # Checks for implicitly concatenated strings on a single line.
+    "ISC002", # Checks for implicitly concatenated strings that span multiple lines.
+    # Add other other rules to ignore. See also https://docs.astral.sh/ruff/rules/.
+    "E501", # Checks for lines that exceed the specified maximum character length.
+    "B006", # Checks for uses of mutable objects as function argument defaults.
+    "D100", # Checks for undocumented public module definitions.
+    "D104", # Checks for undocumented public package definitions.
+    "D205", # Checks for docstring summary lines that are not separated from the docstring description by one blank line.
+    "PT003", # Checks for `pytest.fixture` calls with scope="function".
+    "PT011" # Checks for `pytest.raises` calls without a match parameter.
+]
+fixable = ["E", "F", "I", "D"]
+unfixable = ["F401", "F841"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
